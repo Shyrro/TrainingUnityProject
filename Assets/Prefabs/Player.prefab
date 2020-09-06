@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Size: {x: 2.4375, y: 1.8125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7739244224789706490
@@ -153,8 +153,8 @@ GameObject:
   - component: {fileID: 7739244225484179795}
   - component: {fileID: 7739244225484179792}
   - component: {fileID: 7739244225484179794}
-  - component: {fileID: 7739244225484179797}
-  - component: {fileID: 7739244225484179796}
+  - component: {fileID: 127029430243174740}
+  - component: {fileID: 5155941960455501893}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -226,7 +226,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1310792, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7739244225484179797
+--- !u!114 &127029430243174740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,33 +235,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7739244225484179793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9191e50f100254940af32bba3a99fb7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 7739244225484179792}
-  controller: {fileID: 7739244225484179796}
-  speed: 30
---- !u!114 &7739244225484179796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739244225484179793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66bd5d432f004aa4894d9715588f41a6, type: 3}
+  m_Script: {fileID: 11500000, guid: a490787f1f5cbaa498273dce2a5b31d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 400
   m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.033
+  m_MovementSmoothing: 0.05
   m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 256
-  m_GroundCheck: {fileID: 7739244225003625460}
-  m_CeilingCheck: {fileID: 7739244224789706493}
+    m_Bits: 0
+  m_GroundCheck: {fileID: 0}
+  m_CeilingCheck: {fileID: 0}
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
@@ -269,3 +254,18 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5155941960455501893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7739244225484179793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9941dc1e18a1a04fb01d029fba05c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  controller: {fileID: 0}
+  speed: 0
