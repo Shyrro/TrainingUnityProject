@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private float horizontalMove = 0f;
+    private bool jump = false;
+
     public CharacterController2D controller;
     public Animator animator;
-    private float horizontalMove = 0f;
-    public float speed;
-    bool jump = false;
 
+    public float speed = 30;
+    public float latency = 0;
+    
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+        horizontalMove = Input.GetAxis("Horizontal") * speed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
@@ -25,7 +27,27 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+        StartCoroutine(MovePlayer(horizontalMove * Time.fixedDeltaTime, jump));
         jump = false;
+    }
+
+    private IEnumerator MovePlayer(float lateMove, bool lateJump) {
+        yield return new WaitForSeconds(latency);
+        controller.Move(lateMove, false, lateJump);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            Physics2D.IgnoreCollision(
+                collision.collider,
+                GetComponent<CircleCollider2D>()
+            );
+            Physics2D.IgnoreCollision(
+                collision.collider,
+                GetComponent<BoxCollider2D>()
+            );
+        }
     }
 }
