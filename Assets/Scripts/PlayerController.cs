@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +8,24 @@ public class PlayerController : MonoBehaviour
     private float horizontalMove = 0f;
     private bool jump = false;
 
-    public CharacterController2D controller;
-    public Animator animator;
+    public Guid Id;
 
-    public float speed = 30;
-    public float latency = 0;
+    public CharacterController2D Controller;
+    public Animator Animator;
+
+    public float Speed = 30;
+    public float Latency = 0;
+
+    private void Start()
+    {
+        Id = Guid.NewGuid();
+    }
     
     private void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal") * speed;
+        horizontalMove = Input.GetAxis("Horizontal") * Speed;
 
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        Animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -32,8 +40,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator MovePlayer(float lateMove, bool lateJump) {
-        yield return new WaitForSeconds(latency);
-        controller.Move(lateMove, false, lateJump);
+        yield return new WaitForSeconds(Latency);
+        Controller.Move(lateMove, false, lateJump);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,5 +57,12 @@ public class PlayerController : MonoBehaviour
                 GetComponent<BoxCollider2D>()
             );
         }
+    }
+
+    public void ApplyBuff(float speed, float jumpForce)
+    {
+        Debug.Log("Applied");
+        Speed += speed;
+        Controller.m_JumpForce += jumpForce;
     }
 }
